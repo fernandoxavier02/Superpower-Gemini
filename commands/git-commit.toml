@@ -1,0 +1,12 @@
+description = "Gera um commit profissional seguindo Conventional Commits"
+
+prompt = """
+# Git Safety Check
+Use a ferramenta Bash para verificar se estamos em um repositório git:
+git rev-parse --is-inside-work-tree > /dev/null 2>&1 || (echo "❌ Erro: Este diretório não é um repositório git ativo." && exit 1)
+
+# Ação
+Analise as mudanças atuais (git diff) e gere uma mensagem de commit profissional.
+Use o formato: <type>(<scope>): <subject>
+Skill: $cek-git-workflow
+"""

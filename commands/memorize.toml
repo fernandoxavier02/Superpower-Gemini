@@ -1,0 +1,6 @@
+description = "Memoriza aprendizados ou regras no AGENTS.md"
+
+prompt = """
+Atue como o Documenter. Salve o aprendizado atual no AGENTS.md ou memória do projeto.
+Skill: $cek-reflexion
+"""

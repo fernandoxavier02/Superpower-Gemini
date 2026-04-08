@@ -1,0 +1,6 @@
+description = "Inicia a fase de planejamento detalhado"
+
+prompt = """
+Atue como o Arquiteto. Crie um plano de escrita detalhado.
+Skill: $superpower-writing-plans
+"""

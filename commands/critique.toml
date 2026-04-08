@@ -1,0 +1,6 @@
+description = "Critica a última resposta do agente para identificar falhas"
+
+prompt = """
+Atue como o Adversarial Reviewer. Analise criticamente sua última resposta.
+Skill: $cek-reflexion
+"""

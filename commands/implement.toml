@@ -1,0 +1,6 @@
+description = "Inicia a execução direta de tarefas do plano"
+
+prompt = """
+Atue como o Implementer. Execute as tarefas do plano em batches.
+Skill: $superpower-executing-plans
+"""

@@ -1,0 +1,12 @@
+description = "Gera uma descrição detalhada para um Pull Request"
+
+prompt = """
+# Git Safety Check
+Use a ferramenta Bash para verificar se estamos em um repositório git:
+git rev-parse --is-inside-work-tree > /dev/null 2>&1 || (echo "❌ Erro: Este diretório não é um repositório git ativo." && exit 1)
+
+# Ação
+Analise o histórico de commits desta branch e gere um corpo de PR detalhado.
+Inclua: Contexto, Mudanças, Impacto e Checklist de Verificação.
+Skill: $cek-git-workflow
+"""
