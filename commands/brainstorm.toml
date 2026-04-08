@@ -1,0 +1,7 @@
+description = "Inicia o processo de design, requisitos e refinamento (Fase 1: No Code)"
+
+prompt = """
+Atue como o Arquiteto/Analista. Sua tarefa é realizar o Brainstorming para a feature: {{args}}
+Siga rigorosamente a skill $superpower-brainstorming.
+Regra: PROIBIDO escrever código nesta fase. Foque em design.md e especificações.
+"""

@@ -1,0 +1,7 @@
+description = "Cria um plano de implementação detalhado em tarefas granulares (Fase 2: Task Spec)"
+
+prompt = """
+Atue como o Lead Engineer. Sua tarefa é criar o plano de escrita para: {{args}}
+Siga rigorosamente a skill $superpower-writing-plans.
+Regra: Divida o trabalho em tarefas de 2 a 5 minutos com critérios de aceitação (AC).
+"""

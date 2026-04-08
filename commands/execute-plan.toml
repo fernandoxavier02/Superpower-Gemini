@@ -1,0 +1,7 @@
+description = "Executa o plano de implementação em batches controlados (Fase 3: Code)"
+
+prompt = """
+Atue como o Implementer. Sua tarefa é executar o plano para: {{args}}
+Siga rigorosamente a skill $superpower-executing-plans e $superpower-tdd.
+Regra: RED before GREEN. Não prossiga sem testes falhando.
+"""
