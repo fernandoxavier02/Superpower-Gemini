@@ -8,7 +8,7 @@ import json
 REPLICA_DIRS = [
     os.path.expanduser("~/Superpower-Gemini"),
     os.path.expanduser("~/Context-Engineering-Gemini"),
-    os.path.expanduser("~/pepiline-orchestrator-gemini")
+    os.path.expanduser("~/Pipeline-Orchestrator")
 ]
 DEST_COMMANDS = os.path.expanduser("~/.gemini/commands")
 DEST_SKILLS = os.path.expanduser("~/.agents/skills")
