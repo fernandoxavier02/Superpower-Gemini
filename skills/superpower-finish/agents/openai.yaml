@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Finish"
+  short_description: "Close out verified work and choose next integration step"
+  default_prompt: "Use $superpower-finish to wrap up this verified work and choose the next delivery step."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Review"
+  short_description: "Review changes and process feedback before closing"
+  default_prompt: "Use $superpower-review to review this change and classify any findings before finishing."
+
+policy:
+  allow_implicit_invocation: true

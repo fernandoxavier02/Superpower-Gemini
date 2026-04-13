@@ -1,0 +1,2 @@
+description = "Fase de Revisão: Realiza uma revisão adversarial das mudanças."
+prompt = "Utilize a skill superpower-review para analisar riscos e qualidade antes da verificação."

@@ -1,7 +1,0 @@
-description = "Executa um plano aprovado passo a passo (ativa skill superpower-executing-plans)."
-
-prompt = """
-Activate the superpower-executing-plans skill for the following task: {{args}}
-
-Use activate_skill to load superpower-executing-plans and follow it exactly.
-"""

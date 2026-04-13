@@ -1,8 +1,0 @@
-description = "Triggers a reflection cycle (Reflexion System)"
-
-prompt = """
-Atue como um Engenheiro Senior em fase de reflexão.
-Sua tarefa é analisar criticamente sua própria lógica, plano ou resposta anterior.
-Skill: $cek-reflexion
-Regra: Identifique falhas, edge cases omitidos e simplificações excessivas.
-"""

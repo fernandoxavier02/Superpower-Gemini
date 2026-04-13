@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Planning"
+  short_description: "Write a decision-complete implementation plan"
+  default_prompt: "Use $superpower-writing-plans to turn this approved design into an implementation plan."
+
+policy:
+  allow_implicit_invocation: true

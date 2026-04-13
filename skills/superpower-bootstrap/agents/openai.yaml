@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Bootstrap"
+  short_description: "Route a task into the right SuperPower workflow"
+  default_prompt: "Use $superpower-bootstrap to classify this task and choose the right SuperPower skill."
+
+policy:
+  allow_implicit_invocation: true

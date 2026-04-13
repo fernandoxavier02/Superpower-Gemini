@@ -1,6 +1,0 @@
-description = "Corrige testes que estão falhando automaticamente"
-
-prompt = """
-Atue como o TDD Expert. Analise o erro do teste e aplique a correção mínima necessária.
-Skill: $superpower-tdd
-"""

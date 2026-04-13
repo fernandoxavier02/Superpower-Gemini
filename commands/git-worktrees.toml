@@ -1,6 +1,0 @@
-description = "Gerencia git worktrees para isolamento de features"
-
-prompt = """
-Use a ferramenta Bash para listar ou criar worktrees: git worktree list
-Skill: $cek-git-workflow
-"""

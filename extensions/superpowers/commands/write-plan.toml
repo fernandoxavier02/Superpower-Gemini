@@ -1,7 +1,0 @@
-description = "Cria um plano de implementação estruturado (ativa skill superpower-writing-plans)."
-
-prompt = """
-Activate the superpower-writing-plans skill for the following task: {{args}}
-
-Use activate_skill to load superpower-writing-plans and follow it exactly.
-"""

@@ -1,6 +1,0 @@
-description = "Gera novos casos de teste para o código atual"
-
-prompt = """
-Atue como o QA Engineer. Gere testes unitários ou de integração para cobrir o código atual.
-Skill: $superpower-tdd
-"""

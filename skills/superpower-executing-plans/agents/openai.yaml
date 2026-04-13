@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Execution"
+  short_description: "Execute an approved plan in batches"
+  default_prompt: "Use $superpower-executing-plans to execute this approved plan in safe batches with checkpoints."
+
+policy:
+  allow_implicit_invocation: true

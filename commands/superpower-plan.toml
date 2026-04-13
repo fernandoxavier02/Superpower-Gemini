@@ -1,0 +1,2 @@
+description = "Fase de Planejamento: Cria um plano de implementação decision-complete."
+prompt = "Utilize a skill superpower-writing-plans para decompor o design em tarefas técnicas."

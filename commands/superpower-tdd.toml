@@ -1,0 +1,2 @@
+description = "Fase de Implementação TDD: Executa o ciclo Red-Green-Refactor."
+prompt = "Utilize a skill superpower-tdd para implementar a tarefa atual com rigor Red-Green."

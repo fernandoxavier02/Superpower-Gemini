@@ -1,6 +1,0 @@
-description = "Gerencia a ativação de plugins (list/install)"
-
-prompt = """
-Use a ferramenta Bash para gerenciar plugins: 
-python3 ~/.gemini/hooks/plugin_manager.py {{args}}
-"""

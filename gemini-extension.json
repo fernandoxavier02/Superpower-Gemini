@@ -1,0 +1,28 @@
+{
+  "name": "superpowers",
+  "version": "2.0.0",
+  "description": "Disciplined AI-assisted development workflows — 14 skills, 1 agent, 12 commands. Ported from Claude Code superpowers v5.0.7.",
+  "author": "Jesse Vincent (original: obra/superpowers), Fernando Xavier (Gemini port)",
+  "contextFileName": "GEMINI.md",
+  "agents": [
+    {
+      "id": "code-reviewer",
+      "path": "agents/code-reviewer.md",
+      "description": "Senior Code Reviewer — reviews completed project steps against plans and coding standards."
+    }
+  ],
+  "commands": [
+    { "path": "commands/brainstorm.toml" },
+    { "path": "commands/write-plan.toml" },
+    { "path": "commands/execute-plan.toml" },
+    { "path": "commands/plan.toml" },
+    { "path": "commands/superpower-bootstrap.toml" },
+    { "path": "commands/superpower-brainstorming.toml" },
+    { "path": "commands/superpower-debug.toml" },
+    { "path": "commands/superpower-finish.toml" },
+    { "path": "commands/superpower-plan.toml" },
+    { "path": "commands/superpower-review.toml" },
+    { "path": "commands/superpower-tdd.toml" },
+    { "path": "commands/superpower-verify.toml" }
+  ]
+}

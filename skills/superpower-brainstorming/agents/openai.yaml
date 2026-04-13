@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Brainstorm"
+  short_description: "Turn rough ideas into an approved design"
+  default_prompt: "Use $superpower-brainstorming to refine this idea into an approved design before implementation."
+
+policy:
+  allow_implicit_invocation: true

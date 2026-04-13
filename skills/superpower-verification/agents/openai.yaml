@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Verification"
+  short_description: "Verify evidence before any completion claim"
+  default_prompt: "Use $superpower-verification to verify this work before claiming it is complete or fixed."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,2 @@
+description = "Inicia o ciclo de vida SuperPower: Classifica e roteia a tarefa atual."
+prompt = "Utilize a skill superpower-bootstrap para analisar o objetivo atual, restrições e sinais de sucesso."

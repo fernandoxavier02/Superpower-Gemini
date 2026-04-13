@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Subagents"
+  short_description: "Delegate independent work with Codex agents"
+  default_prompt: "Use $superpower-subagents to decompose this plan into safe delegated tasks."
+
+policy:
+  allow_implicit_invocation: true

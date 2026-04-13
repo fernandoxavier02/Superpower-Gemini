@@ -1,0 +1,2 @@
+description = "Fase de Debugging: Investiga a causa raiz antes de propor correções."
+prompt = "Utilize a skill superpower-debugging para reproduzir e isolar a causa raiz."

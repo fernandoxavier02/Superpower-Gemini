@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower TDD"
+  short_description: "Run strict red-green-refactor development"
+  default_prompt: "Use $superpower-tdd to implement this change with a failing test first."
+
+policy:
+  allow_implicit_invocation: true

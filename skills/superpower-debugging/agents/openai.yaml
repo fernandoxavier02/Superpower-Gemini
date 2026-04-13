@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperPower Debugging"
+  short_description: "Find root cause before proposing fixes"
+  default_prompt: "Use $superpower-debugging to investigate this bug before proposing or writing a fix."
+
+policy:
+  allow_implicit_invocation: true
