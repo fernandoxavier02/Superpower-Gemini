@@ -302,6 +302,35 @@ Root cause: the confirmed explanation (or best hypothesis if unconfirmed)
 Fix applied: what was changed and why
 Verification: test results confirming the fix
 Next skill: $superpower-tdd or $superpower-writing-plans for larger remediation
+
+### Decisões tomadas
+- [list]
+
+### Decision Gate (for multiple plausible root causes)
+
+When competing hypotheses remain and each implies a different fix scope, do not continue with an implementation commit yet. Ask one structured clarification question with 4 options:
+
+```text
+Pergunta de clareza:
+- [1] Opção recomendada (menos risco)
+- [2] Opção alternativa
+- [3] Opção alternativa
+- [4] Outra (descreva)
+
+Se a interface suportar, emita isso como 4 opções clicáveis.
+Se a UI clicável não estiver disponível, liste as mesmas 4 opções e peça a resposta pelo identificador 1-4.
+```
+
+No questions -> no execution.
+
+### Riscos remanescentes
+- [list]
+
+### Pendências para o usuário
+- [list]
+
+### Próximo passo recomendado
+- [list]
 ```
 
 ---

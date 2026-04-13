@@ -1,6 +1,6 @@
 {
   "name": "superpowers",
-  "version": "2.0.0",
+  "version": "5.0.7",
   "description": "Disciplined AI-assisted development workflows — 14 skills, 1 agent, 12 commands. Ported from Claude Code superpowers v5.0.7.",
   "author": "Jesse Vincent (original: obra/superpowers), Fernando Xavier (Gemini port)",
   "contextFileName": "GEMINI.md",

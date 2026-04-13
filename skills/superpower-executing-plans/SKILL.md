@@ -21,10 +21,34 @@ Load plan, review critically, execute all tasks in controlled batches, report wh
 
 ### Step 1: Load and Review Plan
 
+Before editing or executing any task, run the clarification gate first:
+
+1. Check whether the request, plan, or current batch contains any ambiguity that materially affects scope, risk, sequencing, or execution.
+2. If ambiguity exists, block execution and ask exactly one structured clarification question before continuing.
+3. Wait for an explicit user answer before starting or resuming implementation.
+4. `No questions -> no execution.` If a blocking ambiguity exists and the structured clarification question has not been asked and answered, do not start Step 1.
+
+Use this exact template:
+
+```text
+Pergunta de clareza:
+- [1] Opção recomendada (recomendada)
+- [2] Opção alternativa
+- [3] Opção alternativa
+- [4] Outra (descreva)
+
+Se a interface suportar, emita isso como 4 opções clicáveis.
+Se a UI clicável não estiver disponível, liste as mesmas 4 opções e peça a resposta pelo identificador 1-4.
+Exigir resposta explícita antes de seguir.
+```
+
+Then continue with plan review steps:
+
 1. Read plan file using `read_file`
-2. Review critically — identify any questions or concerns about the plan
-3. If concerns exist: raise them with your human partner using `ask_user` before starting
-4. If no concerns: create an inline YAML tracking block and proceed
+2. Run the clarification gate first if any ambiguity or open decision exists
+3. Review critically — identify any questions or concerns about the plan
+4. If concerns exist: raise them with your human partner using the structured clarification question before starting
+5. If no concerns: create an inline YAML tracking block and proceed
 
 **Tracking block format** (maintain in your responses as tasks progress):
 
@@ -59,6 +83,35 @@ For each task in the batch:
 
 After each batch, emit the **Batch Report** (see Output Contract below).
 
+### Step 2.1: Progress Board Required
+
+At the start of each batch, include this panel in the response:
+
+```yaml
+plan_progress:
+  phase: execution
+  current_step: 1
+  steps:
+    - id: clarificacao
+      status: done
+      output: "Perguntas de ambiguidade"
+    - id: design_do_fluxo
+      status: in_progress
+      output: "Estrutura do plano"
+    - id: execucao_lote
+      status: in_progress
+      output: "Execução com validação"
+    - id: revisao_adversarial
+      status: pending
+      output: "Revisão entre lotes"
+    - id: fechamento
+      status: pending
+      output: "Resumo + próximos passos"
+```
+
+- Update at least one field after each batch before sending the next batch report.
+- Never transition from execution to final completion without `plan_progress.phase` reaching `fechamento`.
+
 ### Step 3: Complete Development
 
 After all tasks are complete and verified:
@@ -77,7 +130,7 @@ After all tasks are complete and verified:
 |-----------|--------|
 | Plan has critical gaps preventing start | Ask user via `ask_user` |
 | Hit a blocker (missing dependency, file not found) | Report blocker, stop batch |
-| Instruction is unclear or ambiguous | Ask for clarification via `ask_user` |
+| Instruction is unclear or ambiguous | Use the structured clarification question, prefer clickable choices when supported, otherwise require a textual reply with `1`, `2`, `3`, or `4` |
 | Verification fails repeatedly (2x same check) | Stop and analyze root cause |
 | User input needed for a real decision | Ask via `ask_user`, do not guess |
 

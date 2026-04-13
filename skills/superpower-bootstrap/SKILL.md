@@ -116,13 +116,85 @@ Might any skill apply? ◀─────────────────┘
   Announce: "Using [skill] to [purpose]"
        │
        ▼
-  Has checklist? ──yes──▶ Create YAML tracker per item
+  Any ambiguity that changes scope, risk, or execution?
        │                         │
-       no                        │
+      yes                        no
        │                         │
        ▼                         ▼
-  Follow skill exactly ◀────────┘
+  Block execution          Has checklist? ──yes──▶ Create YAML tracker per item
+  Ask exactly one               │                         │
+  structured clarification      no                        │
+  question and wait             │                         │
+  for explicit answer           ▼                         ▼
+       │                  Follow skill exactly ◀────────┘
+       └───────────────────────────────────────▶
 ```
+
+## Mandatory Clarification Gate
+
+If any ambiguity exists that materially affects scope, risk, routing, or execution, block execution before any planning step, file read, code change, or executable action.
+
+Ask exactly one structured clarification question at a time. Offer exactly 4 options: 3 opções, with one option explicitly marked as recommended, plus one `Outra` option.
+
+No questions -> no execution.
+
+Use this exact template in every applicable skill handoff:
+
+```text
+Pergunta de clareza:
+- [1] Opção recomendada (recomendada)
+- [2] Opção alternativa
+- [3] Opção alternativa
+- [4] Outra (descreva)
+
+Se a interface suportar, emita isso como 4 opções clicáveis (4 botões/4 itens).
+Se a UI clicável não estiver disponível, liste as mesmas 4 opções e peça a resposta pelo identificador 1-4.
+Exigir resposta explícita antes de seguir.
+
+Escopo da execução:
+1) Foco mínimo (implementa apenas clarificação + blocagem de risco)
+2) Foco padrão (inclui plano, progressão e revisão por lote)
+3) Foco amplo (inclui telemetria extra e documentação de decisão)
+4) Outra (descreva claramente)
+
+Seção de bloqueio:
+- If any ambiguity exists, block execution and ask exactly one structured clarification question with 4 options (3 propostas + 1 recomendada + 1 opção outro).
+- No planning or execution step starts until the answer is received.
+- If ambiguity remains after response, repeat this block.
+
+### Clickable / Textual Fallback
+
+- If the UI supports clickable choices, render the four options as interactive buttons/items.
+- If clickable UI is unavailable, list the four options and require identifiers `1`, `2`, `3`, or `4` as textual reply.
+```
+
+## Progress Board
+
+Use this exact structure before starting any multi-step execution batch:
+
+```yaml
+plan_progress:
+  phase: clarification
+  current_step: 1
+  steps:
+    - id: clarificacao
+      status: in_progress
+      output: "Perguntas de ambiguidade"
+    - id: design_do_fluxo
+      status: pending
+      output: "Estrutura do fluxo"
+    - id: execucao_lote
+      status: pending
+      output: "Execução por lote"
+    - id: revisao_adversarial
+      status: pending
+      output: "Revisão adversarial"
+    - id: fechamento
+      status: pending
+      output: "Resumo + próximos passos"
+```
+
+Do not continue until the user selects one option. If the answer resolves the ambiguity, proceed. If a different ambiguity remains, ask the next single structured clarification question before moving on.
 
 ## Red Flags
 
@@ -188,7 +260,7 @@ When you need to route to a specific skill, use `activate_skill` with the approp
 - Prefer process skills before implementation skills.
 - Do not start coding when the task still needs design, root-cause analysis, or a written plan.
 - Do not guess through ambiguity that changes architecture, risk, or scope.
-- If two routes are plausible and the choice materially changes the work, use `ask_user` with one concise clarifying question before proceeding.
+- If any ambiguity exists, use the mandatory clarification gate above before proceeding. Suggest clickable UI choices when available; otherwise require a textual reply with `1`, `2`, `3`, or `4`.
 - For trivial factual answers or one-step read-only tasks, answer directly and skip the family.
 
 ## Output Contract

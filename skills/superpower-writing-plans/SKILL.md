@@ -17,6 +17,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
+- **Before any discovery, the skill MUST enter Codex plan mode via `update_plan` (and `enter_plan_mode` when available) and record the planning session before reading any files.**
 
 ## Tool Mapping (Gemini CLI)
 
@@ -29,7 +30,40 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 | Ask user questions | `ask_user` |
 | Activate another skill | `activate_skill` with `$superpower-{name}` |
 | Track task progress | Inline YAML tracking blocks (see below) |
+| Enter/ensure Codex plan mode | `update_plan` (and `enter_plan_mode` first when available) |
 | Plan mode (read-only analysis) | Sequential read-only analysis — read files and reason about structure without making changes |
+
+## Mandatory Clarification Gate
+
+If the request, spec, or surrounding context contains ambiguity that materially affects scope, architecture, sequencing, or execution, do not start discovery, scope check, or plan writing yet.
+
+Ask exactly one structured clarification question at a time and wait for an explicit answer before proceeding. Offer exactly 4 options: 3 options (3 opções) and include one option explicitly marked as recommended, plus one `Outra` option.
+
+Use this exact template:
+
+```text
+Pergunta de clareza:
+- [1] Opção recomendada (recomendada)
+- [2] Opção alternativa
+- [3] Opção alternativa
+- [4] Outra (descreva)
+
+Se a interface suportar, emita isso como 4 opções clicáveis.
+Se a UI clicável não estiver disponível, liste as mesmas 4 opções e peça a resposta pelo identificador 1-4.
+Exigir resposta explícita antes de seguir.
+```
+
+Discovery and Scope Check only begin after the ambiguity is resolved. If a new blocking ambiguity appears later, pause and repeat the same single-question format.
+
+If no ambiguity is identified for plan scope, continue directly to step 1.
+
+If ambiguity exists, the clarification step is blocking:
+- "No questions -> no execution."
+- Keep the request open until the user chooses one option and sends it explicitly.
+
+Use exactly these UI instructions:
+- "Emitir pergunta em formato de escolhas clicáveis." (4 opções) when interaction supports it.
+- "Se não suportar, apresentar as mesmas 4 opções e pedir resposta por `1`, `2`, `3` ou `4`."
 
 ## Scope Check
 
@@ -48,7 +82,7 @@ This structure informs the task decomposition. Each task should produce self-con
 
 ### Discovery Phase
 
-Before writing the plan, use sequential read-only analysis to understand the codebase:
+Before writing the plan, enter Codex plan mode and use `update_plan` for all planning operations. Then use sequential read-only analysis to understand the codebase:
 
 1. **Find relevant files:**
    ```
@@ -67,6 +101,7 @@ Before writing the plan, use sequential read-only analysis to understand the cod
    ```
 
 Do NOT modify any files during this phase. Only read and reason.
+If the environment does not expose `update_plan`, pause and ask the user before continuing; document the fallback limitation in plan outputs before any non-planning action.
 
 ## Bite-Sized Task Granularity
 
@@ -208,6 +243,31 @@ After the review, append to the plan:
 - [suggestions for improvement]
 ```
 
+## Mandatory Plan Closure Section
+
+Before handoff, the final plan must include:
+
+- `Decisões tomadas`
+- `Riscos remanescentes`
+- `Pendências para o usuário`
+- `Próximo passo recomendado`
+
+Use the following section format at the end of every plan:
+
+```markdown
+## Decisões tomadas
+- ...
+
+## Riscos remanescentes
+- ...
+
+## Pendências para o usuário
+- ...
+
+## Próximo passo recomendado
+- ...
+```
+
 ## Task Progress Tracking
 
 Use inline YAML blocks to track task completion state:
@@ -222,13 +282,39 @@ tasks:
     status: complete  # pending | in-progress | complete | blocked
   - id: 2
     name: "Next Component"
-    status: in-progress
+    status: in_progress  # pending | in_progress | complete | blocked
   - id: 3
     name: "Final Component"
-    status: pending
+    status: pending  # pending | in_progress | complete | blocked
+```
+Update this block as tasks are completed during execution.
+
+## Task Progress Tracking (plan_progress)
+
+Use this exact phase map in all writing-plan outputs:
+
+```yaml
+plan_progress:
+  phase: planning
+  current_step: 1
+  steps:
+    - id: clarificacao
+      status: pending        # pending | in_progress | done | blocked
+      output: "Perguntas de ambiguidade"
+    - id: design_do_fluxo
+      status: pending
+      output: "Estrutura do plano"
+    - id: execucao_lote
+      status: pending
+      output: "Execução com validação"
+    - id: revisao_adversarial
+      status: pending
+      output: "Revisão entre lotes"
+    - id: fechamento
+      status: pending
+      output: "Resumo + próximos passos"
 ```
 
-Update this block as tasks are completed during execution.
 
 ## Execution Handoff
 
@@ -244,13 +330,16 @@ After saving the plan, offer execution:
 
 ```
 1. Announce skill activation
-2. Read spec/requirements (read_file)
-3. Discovery phase — map codebase (run_shell_command with grep/find, read_file)
-4. Scope check — single plan or split?
-5. Define file structure
-6. Write tasks with TDD steps and full code
-7. Self-review (spec coverage, placeholder scan, type consistency)
-8. Plan document review (completeness, alignment, decomposition, buildability)
-9. Save plan (write_file to docs/superpowers/plans/)
-10. Offer execution handoff
+2. Enter Codex plan mode by calling `update_plan` (and `enter_plan_mode` first when supported).
+3. Read spec/requirements (read_file)
+4. Clarification gate — if ambiguity exists, ask exactly one structured clarification question and wait for an explicit answer
+5. Discovery phase — map codebase (run_shell_command with grep/find, read_file)
+6. Scope check — single plan or split?
+7. Define file structure
+8. Write tasks with TDD steps and full code
+9. Self-review (spec coverage, placeholder scan, type consistency)
+10. Plan document review (completeness, alignment, decomposition, buildability)
+11. Save plan (write_file to docs/superpowers/plans/)
+12. Offer execution handoff
 ```
+

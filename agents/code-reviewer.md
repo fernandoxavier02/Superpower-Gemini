@@ -1,3 +1,8 @@
+---
+name: code-reviewer
+description: "Senior Code Reviewer — reviews completed project steps against plans and coding standards."
+---
+
 # Code Reviewer Agent (Gemini CLI)
 
 > Adapted from Claude Code superpowers v5.0.7 `agents/code-reviewer.md` for Gemini CLI.

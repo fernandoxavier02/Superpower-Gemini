@@ -176,6 +176,18 @@ Produce the review in the following structure:
 ### Assessment
 **Ready to merge?** [Yes / No / With fixes]
 **Reasoning:** [Technical assessment in 1-2 sentences]
+
+### Decisões tomadas
+- [list]
+
+### Riscos remanescentes
+- [list]
+
+### Pendências para o usuário
+- [list]
+
+### Próximo passo recomendado
+- [list]
 ```
 
 ### Critical Rules for the Reviewer
@@ -327,6 +339,34 @@ Return:
 - `Disposition:` fixed, deferred, or rejected with reason per finding
 - `Review cycles:` number of review/fix iterations performed
 - `Next skill:` `$superpower-verification` once the review is clean enough to support a completion claim
+
+### High-Volume Decision Gate (reviewing large or conflicting findings)
+
+If findings create a meaningful fork in risk, sequencing, or scope (for example, multiple high-severity categories, or one fix could block another), pause implementation and ask exactly one structured question before continuing.
+
+Use this exact format:
+
+```text
+Pergunta de clareza:
+- [1] Opção recomendada (menor risco)
+- [2] Opção alternativa
+- [3] Opção alternativa
+- [4] Outra (descreva)
+
+Se a interface suportar, emita isso como 4 opções clicáveis.
+Se a UI clicável não estiver disponível, liste as mesmas 4 opções e peça a resposta pelo identificador 1-4.
+```
+
+No questions -> no execution.
+
+## Decision Block (required in each review response)
+
+Return the following sections, always in this order:
+
+- Decisões tomadas
+- Riscos remanescentes
+- Pendências para o usuário
+- Próximo passo recomendado
 
 ---
 

@@ -37,6 +37,24 @@ Bootstrap → Brainstorm → Plan → TDD/Implement → Review → Verify → Fi
 
 Each skill enforces discipline at its phase. Skills can be used independently or as part of the full workflow.
 
+## Operational parity notes
+
+This extension includes a compatibility `hooks/` layer for environments with hook
+events (`SessionStart` style). Gemini CLI does not execute these automatically today,
+so you can run:
+
+```bash
+bash hooks/session-start
+```
+
+or
+
+```bash
+hooks\\run-hook.cmd session-start
+```
+
+when you want parity-equivalent session bootstrap.
+
 ## Key Principles
 
 1. **Evidence before assertions** — Always run commands and verify output before claiming success

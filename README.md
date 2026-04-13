@@ -7,7 +7,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/platform-Google%20Gemini%20CLI-4285F4?style=flat-square&logo=google&logoColor=white" alt="Platform"/>
-  <img src="https://img.shields.io/badge/version-2.0.0-blue?style=flat-square" alt="Version"/>
+  <img src="https://img.shields.io/badge/version-5.0.7-blue?style=flat-square" alt="Version"/>
   <img src="https://img.shields.io/badge/skills-14-blueviolet?style=flat-square" alt="Skills"/>
   <img src="https://img.shields.io/badge/commands-12-orange?style=flat-square" alt="Commands"/>
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"/>
@@ -80,6 +80,14 @@ chmod +x install.sh
 ```bash
 gemini extensions list                    # Should show "superpowers"
 /skills list                              # Should show 14 superpower-* skills
+```
+
+Operational parity (hooks/tests/docs):
+
+```bash
+bash tests/validate-parity.sh             # Cross-platform
+# or
+powershell -ExecutionPolicy Bypass -File tests/validate-parity.ps1
 ```
 
 ### Uninstall
@@ -166,7 +174,7 @@ chmod +x uninstall.sh && ./uninstall.sh   # Remove completely
 
 ```
 superpowers/
-├── gemini-extension.json              # Extension manifest (v2.0.0)
+    ├── gemini-extension.json              # Extension manifest (v5.0.7)
 ├── GEMINI.md                          # Context file (auto-loaded at session start)
 ├── BRIDGE_SPEC.md                     # Claude Code -> Gemini CLI mapping docs
 ├── agents/
@@ -177,6 +185,15 @@ superpowers/
 │   ├── execute-plan.toml
 │   ├── plan.toml
 │   └── superpower-*.toml              # 8 shortcut commands
+├── hooks/                              # Hook compatibility artifacts
+│   ├── hooks.json
+│   ├── hooks-cursor.json
+│   ├── session-start
+│   └── run-hook.cmd
+├── tests/                              # Operational parity checks
+│   ├── README.md
+│   ├── validate-parity.sh
+│   └── validate-parity.ps1
 ├── skills/                            # 14 self-contained skills
 │   ├── superpower-bootstrap/SKILL.md          (203 lines)
 │   ├── superpower-brainstorming/SKILL.md      (497 lines)
@@ -197,7 +214,17 @@ superpowers/
 └── README.md
 ```
 
-**Total:** 6,233 lines of skill content across 14 skills.
+## Operational parity
+
+```bash
+gemini extensions install https://github.com/fernandoxavier02/Superpower-Gemini
+```
+
+If your Gemini host does not trigger session hooks automatically, run once after startup:
+
+```bash
+bash hooks/session-start
+```
 
 ---
 
