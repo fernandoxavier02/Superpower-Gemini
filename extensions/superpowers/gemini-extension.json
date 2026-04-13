@@ -1,0 +1,24 @@
+{
+  "name": "superpowers",
+  "version": "1.0.0",
+  "description": "Gemini CLI port of Claude Code superpowers v5.0.7 — 14 skills + 1 agent for disciplined AI-assisted development workflows.",
+  "author": "Jesse Vincent (original CC plugin: obra/superpowers), Fernando Xavier (Gemini port)",
+  "agents": [
+    {
+      "id": "code-reviewer",
+      "path": "agents/code-reviewer.md",
+      "description": "Senior Code Reviewer — reviews completed project steps against plans and coding standards."
+    }
+  ],
+  "commands": [
+    {
+      "path": "commands/brainstorm.toml"
+    },
+    {
+      "path": "commands/write-plan.toml"
+    },
+    {
+      "path": "commands/execute-plan.toml"
+    }
+  ]
+}

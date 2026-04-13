@@ -1,0 +1,7 @@
+description = "Inicia brainstorming estruturado para uma tarefa (ativa skill superpower-brainstorming)."
+
+prompt = """
+Activate the superpower-brainstorming skill for the following task: {{args}}
+
+Use activate_skill to load superpower-brainstorming and follow it exactly.
+"""
